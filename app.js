@@ -30,16 +30,17 @@ const projectsData = [
     category: 'mobile',
     type: 'Đồ Án Môn Học',
     year: '2026',
-    role: 'Cross-Platform Mobile Developer',
-    short: 'Ứng dụng di động đa nền tảng viết bằng TypeScript kết nối hệ thống server backend, quản lý trạng thái mượt mà trên iOS & Android.',
-    description: 'Đồ án môn học Phát triển ứng dụng đa nền tảng chính thức trên GitHub conghlovt. Xây dựng ứng dụng di động hoàn chỉnh bằng TypeScript, kiến trúc giao diện tương tác cao, kết nối API server và lưu trữ dữ liệu hiệu năng tốt.',
+    role: 'UI/UX & Frontend Developer (Auth & Admin Dashboard)',
+    short: 'Phát triển luồng giao diện xác thực người dùng (Đăng ký, Đăng nhập, Đăng xuất) và xây dựng Bảng điều khiển Quản trị viên (Admin Dashboard).',
+    description: 'Đồ án môn học Phát triển ứng dụng đa nền tảng chính thức trên GitHub conghlovt. Đảm nhận vai trò chính thiết kế & lập trình toàn bộ luồng xác thực người dùng (Đăng ký, Đăng nhập, Đăng xuất), lưu trữ phiên làm việc an toàn và xây dựng Bảng điều khiển Quản trị viên (Admin Dashboard) hiển thị thống kê & quản lý dữ liệu.',
     highlights: [
       'Repository chính thức trên GitHub: github.com/conghlovt/Do_An_Phat_Trien_Ung_Dung_Da_Nen_Tang',
-      'Phát triển với ngôn ngữ TypeScript & kiến trúc ứng dụng đa nền tảng',
-      'Tối ưu hóa UI/UX mượt mà trên cả hệ điều hành Android và iOS',
-      'Quản lý luồng xử lý dữ liệu bất đồng bộ & lưu trữ dữ liệu ứng dụng'
+      'Thiết kế & hoàn thiện giao diện Đăng ký, Đăng nhập, Đăng xuất mượt mà',
+      'Phát triển Bảng điều khiển Quản trị viên (Admin Dashboard) trực quan & tối ưu UI',
+      'Tích hợp luồng xác thực token / session và phân quyền truy cập hệ thống',
+      'Lập trình bằng TypeScript & tối ưu trải nghiệm người dùng mượt mà'
     ],
-    tags: ['TypeScript', 'React Native', 'Mobile App', 'REST API', 'GitHub Repo'],
+    tags: ['TypeScript', 'Auth UI', 'Admin Dashboard', 'Mobile App', 'GitHub Repo'],
     github: 'https://github.com/conghlovt/Do_An_Phat_Trien_Ung_Dung_Da_Nen_Tang',
     demo: 'https://github.com/conghlovt/Do_An_Phat_Trien_Ung_Dung_Da_Nen_Tang',
     banner: generateBannerSvg('Đồ Án Đa Nền Tảng (TypeScript)', '#0f172a', '#38bdf8')
