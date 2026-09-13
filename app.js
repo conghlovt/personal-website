@@ -144,17 +144,40 @@ function renderHeader() {
         <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer" class="deploy-btn-nav">
           ${icons.github} <span>@conghlovt</span>
         </a>
-        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle menu">☰</button>
-      </div>
-      <div class="mobile-nav" id="mobile-nav">
-        <a href="#home">Trang Chủ</a>
-        <a href="#projects">3 Đồ Án GitHub</a>
-        <a href="#github-sync">GitHub Live Sync</a>
-        <a href="#skills">Kỹ Năng Năng Lực</a>
-        <a href="#journey">Học Tập HUCE</a>
-        <a href="#contact">Liên Hệ</a>
+        <button class="menu-toggle" id="menu-toggle-btn" aria-label="Mở menu di động">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
       </div>
     </header>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand">
+          <img src="${profileInfo.avatarUrl}" alt="${profileInfo.name}" class="brand-avatar-mini" />
+          <div class="brand-title">
+            <span class="brand-name">${profileInfo.name}</span>
+            <span class="brand-sub">@conghlovt • HUCE 68CS1</span>
+          </div>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Đóng menu">${icons.close}</button>
+      </div>
+      <nav class="mobile-drawer-links">
+        <a href="#home" class="drawer-link active">${icons.arrowRight} <span>Trang Chủ</span></a>
+        <a href="#projects" class="drawer-link">${icons.arrowRight} <span>3 Đồ Án GitHub (${projectsData.length})</span></a>
+        <a href="#github-sync" class="drawer-link">${icons.arrowRight} <span>GitHub Live Sync</span></a>
+        <a href="#skills" class="drawer-link">${icons.arrowRight} <span>Kỹ Năng Năng Lực</span></a>
+        <a href="#journey" class="drawer-link">${icons.arrowRight} <span>Học Tập HUCE</span></a>
+        <a href="#contact" class="drawer-link">${icons.arrowRight} <span>Thông Tin Liên Hệ</span></a>
+      </nav>
+      <div class="mobile-drawer-footer">
+        <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer" class="btn btn-primary" style="width:100%;">
+          ${icons.github} GitHub @conghlovt ↗
+        </a>
+      </div>
+    </div>
+
     <aside class="side-rail">
       <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer" title="GitHub Profile @conghlovt">${icons.github}</a>
       <a href="${profileInfo.repoUrl}" target="_blank" rel="noreferrer" title="Repository Mã Nguồn personal-website">${icons.code}</a>
@@ -629,9 +652,61 @@ function initParticleCanvas() {
   animate();
 }
 
+// Toast Notification System Helper
+function showToast(message, icon = '✓') {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('toast-out');
+    toast.addEventListener('animationend', () => toast.remove());
+  }, 2600);
+}
+
+// ScrollSpy Navigation Highlight
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const desktopLinks = document.querySelectorAll('.desktop-nav a');
+  const drawerLinks = document.querySelectorAll('.drawer-link');
+
+  if (!sections.length || !('IntersectionObserver' in window)) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-25% 0px -55% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        desktopLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          link.classList.toggle('active', href === `#${id}`);
+        });
+        drawerLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          link.classList.toggle('active', href === `#${id}`);
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(sec => observer.observe(sec));
+}
+
 // 3D Card Tilt Effect
 function bind3DTilt() {
   const cards = document.querySelectorAll('.project-card');
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  
+  if (isTouchDevice) return; // Skip 3D tilt on touch devices for smoother performance
+
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -670,6 +745,7 @@ function initApp() {
 
   initParticleCanvas();
   bind3DTilt();
+  initScrollSpy();
 
   // Fetch initial GitHub repos directly from @conghlovt
   fetchGitHubRepos(profileInfo.githubUser);
@@ -682,6 +758,7 @@ function initApp() {
     const username = ghInput?.value.trim();
     if (username) {
       fetchGitHubRepos(username);
+      showToast(`Đang đồng bộ dữ liệu GitHub cho @${username}...`, '⏳');
     }
   });
 
@@ -691,14 +768,44 @@ function initApp() {
     topbar?.classList.toggle('scrolled', window.scrollY > 30);
   }, { passive: true });
 
-  // Mobile Nav
-  const menuBtn = document.getElementById('menu-toggle-btn');
-  const mobileNav = document.getElementById('mobile-nav');
-  menuBtn?.addEventListener('click', () => {
-    mobileNav?.classList.toggle('open');
+  // Floating Back-To-Top Button Handler
+  const backToTopBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (backToTopBtn) {
+      backToTopBtn.classList.toggle('visible', window.scrollY > 350);
+    }
+  }, { passive: true });
+
+  backToTopBtn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-  mobileNav?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => mobileNav.classList.remove('open'));
+
+  // Mobile Navigation Drawer Overlay Logic
+  const menuBtn = document.getElementById('menu-toggle-btn');
+  const drawerCloseBtn = document.getElementById('drawer-close-btn');
+  const mobileDrawer = document.getElementById('mobile-nav-drawer');
+  const mobileBackdrop = document.getElementById('mobile-nav-backdrop');
+
+  function openMobileDrawer() {
+    mobileDrawer?.classList.add('open');
+    mobileBackdrop?.classList.add('open');
+    document.body.classList.add('drawer-open');
+  }
+
+  function closeMobileDrawer() {
+    mobileDrawer?.classList.remove('open');
+    mobileBackdrop?.classList.remove('open');
+    document.body.classList.remove('drawer-open');
+  }
+
+  menuBtn?.addEventListener('click', openMobileDrawer);
+  drawerCloseBtn?.addEventListener('click', closeMobileDrawer);
+  mobileBackdrop?.addEventListener('click', closeMobileDrawer);
+
+  document.querySelectorAll('.drawer-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileDrawer();
+    });
   });
 
   // Filter Tabs
@@ -741,7 +848,10 @@ function initApp() {
   const closeProjectModalBtn = document.getElementById('close-project-modal');
 
   projectCards.forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+      // Don't trigger modal if user clicked directly on repo link
+      if (e.target.closest('a')) return;
+
       const projectId = card.dataset.id;
       const project = projectsData.find(p => p.id === projectId);
       if (project && modalBody && projectModal) {
@@ -778,32 +888,36 @@ function initApp() {
             </div>
           </div>`;
         projectModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
     });
   });
 
-  closeProjectModalBtn?.addEventListener('click', () => {
+  function closeModal() {
     projectModal?.classList.remove('active');
-  });
+    document.body.style.overflow = '';
+  }
 
+  closeProjectModalBtn?.addEventListener('click', closeModal);
   projectModal?.addEventListener('click', (e) => {
-    if (e.target === projectModal) projectModal.classList.remove('active');
+    if (e.target === projectModal) closeModal();
   });
 
-  // Copy Buttons
+  // Copy Buttons with Toast Notification
   document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const textToCopy = btn.dataset.copy;
       if (textToCopy) {
         navigator.clipboard.writeText(textToCopy);
+        showToast(`Đã sao chép: ${textToCopy}`, '📋');
         const originalText = btn.innerHTML;
         btn.innerHTML = '✓ Đã Copy!';
-        btn.style.background = 'var(--emerald)';
-        btn.style.color = '#000';
+        btn.style.borderColor = 'var(--cyan)';
+        btn.style.color = 'var(--cyan)';
         setTimeout(() => {
           btn.innerHTML = originalText;
-          btn.style.background = '';
+          btn.style.borderColor = '';
           btn.style.color = '';
         }, 2000);
       }
