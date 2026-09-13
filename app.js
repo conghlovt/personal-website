@@ -157,9 +157,9 @@ function renderHeader() {
     </header>
     <aside class="side-rail">
       <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer" title="GitHub Profile @conghlovt">${icons.github}</a>
-      <a href="${profileInfo.repoUrl}" target="_blank" rel="noreferrer" title="Repository personal-website">${icons.code}</a>
-      <a href="mailto:${profileInfo.email}" title="Gửi Email (${profileInfo.email})">${icons.mail}</a>
-      <a href="tel:${profileInfo.phone}" title="Gọi Điện (${profileInfo.phone})">${icons.phone}</a>
+      <a href="${profileInfo.repoUrl}" target="_blank" rel="noreferrer" title="Repository Mã Nguồn personal-website">${icons.code}</a>
+      <a href="#contact" title="Email: ${profileInfo.email} (Chuyển đến phần Liên Hệ)">${icons.mail}</a>
+      <a href="#contact" title="SĐT/Zalo: ${profileInfo.phone} (Chuyển đến phần Liên Hệ)">${icons.phone}</a>
     </aside>`;
 }
 
