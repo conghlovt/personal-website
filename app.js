@@ -17,8 +17,22 @@ const icons = {
 };
 
 // SVG Placeholder generator for projects
-function generateBannerSvg(title, color1, color2) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="600" height="340" fill="url(#g)"/><circle cx="500" cy="50" r="140" fill="white" opacity="0.05"/><circle cx="80" cy="280" r="100" fill="white" opacity="0.06"/><rect x="40" y="40" width="520" height="260" rx="12" fill="none" stroke="white" stroke-opacity="0.15" stroke-dasharray="8 8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-weight="700" font-size="22" opacity="0.9">${title}</text></svg>`;
+function generateBannerSvg(title, subtitle, color1, color2, fontSize = 20) {
+  const gradId = `g_${color1.replace('#', '')}`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340">
+    <defs>
+      <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${color1}"/>
+        <stop offset="100%" stop-color="${color2}"/>
+      </linearGradient>
+    </defs>
+    <rect width="600" height="340" fill="url(#${gradId})"/>
+    <circle cx="500" cy="50" r="140" fill="white" opacity="0.05"/>
+    <circle cx="80" cy="280" r="100" fill="white" opacity="0.06"/>
+    <rect x="35" y="35" width="530" height="270" rx="14" fill="none" stroke="white" stroke-opacity="0.18" stroke-dasharray="6 6"/>
+    <text x="50%" y="${subtitle ? '43%' : '50%'}" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="800" font-size="${fontSize}" letter-spacing="-0.3px">${title}</text>
+    ${subtitle ? `<text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="${color2}" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="700" font-size="15" letter-spacing="1px">${subtitle}</text>` : ''}
+  </svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
@@ -43,7 +57,7 @@ const projectsData = [
     tags: ['TypeScript', 'Auth UI', 'Admin Dashboard', 'Mobile App', 'GitHub Repo'],
     github: 'https://github.com/conghlovt/Do_An_Phat_Trien_Ung_Dung_Da_Nen_Tang',
     demo: 'https://github.com/conghlovt/Do_An_Phat_Trien_Ung_Dung_Da_Nen_Tang',
-    banner: generateBannerSvg('Đồ Án Đa Nền Tảng (TypeScript)', '#0f172a', '#38bdf8')
+    banner: generateBannerSvg('Đồ Án Phát Triển Ứng Dụng', 'ĐA NỀN TẢNG (TYPESCRIPT & MOBILE UI)', '#0f172a', '#38bdf8', 21)
   },
   {
     id: 'do-an-thi-giac-may-tinh',
@@ -64,7 +78,7 @@ const projectsData = [
     tags: ['Jupyter Notebook', 'Python', 'OpenCV', 'Computer Vision', 'Image Processing'],
     github: 'https://github.com/conghlovt/Do_An_Thi_Giac_May_Tinh',
     demo: 'https://github.com/conghlovt/Do_An_Thi_Giac_May_Tinh',
-    banner: generateBannerSvg('Đồ Án Thị Giác Máy Tính', '#1e1b4b', '#a855f7')
+    banner: generateBannerSvg('Đồ Án Thị Giác Máy Tính', 'COMPUTER VISION & OPENCV AI', '#1e1b4b', '#c084fc', 22)
   },
   {
     id: 'do-an-xu-ly-anh-xla',
@@ -85,7 +99,7 @@ const projectsData = [
     tags: ['Python', 'OpenCV', 'Xử Lý Ảnh', 'XLA', 'Digital Image Processing', 'NumPy'],
     github: 'https://github.com/conghlovt/Do_An_XLA',
     demo: 'https://github.com/conghlovt/Do_An_XLA',
-    banner: generateBannerSvg('Đồ Án Xử Lý Ảnh (XLA)', '#042f2e', '#14b8a6')
+    banner: generateBannerSvg('Đồ Án Xử Lý Ảnh (XLA)', 'DIGITAL IMAGE PROCESSING & PYTHON', '#042f2e', '#2dd4bf', 22)
   }
 ];
 
