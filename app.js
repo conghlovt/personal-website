@@ -18,8 +18,8 @@ const icons = {
 
 // SVG Placeholder generator for projects
 function generateBannerSvg(title, color1, color2) {
-  const encodedTitle = encodeURIComponent(title);
-  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="600" height="340" fill="url(%23g)"/><circle cx="500" cy="50" r="140" fill="white" opacity="0.05"/><circle cx="80" cy="280" r="100" fill="white" opacity="0.06"/><rect x="40" y="40" width="520" height="260" rx="12" fill="none" stroke="white" stroke-opacity="0.15" stroke-dasharray="8 8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-weight="700" font-size="22" opacity="0.9">${encodedTitle}</text></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${color1}"/><stop offset="100%" stop-color="${color2}"/></linearGradient></defs><rect width="600" height="340" fill="url(#g)"/><circle cx="500" cy="50" r="140" fill="white" opacity="0.05"/><circle cx="80" cy="280" r="100" fill="white" opacity="0.06"/><rect x="40" y="40" width="520" height="260" rx="12" fill="none" stroke="white" stroke-opacity="0.15" stroke-dasharray="8 8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="sans-serif" font-weight="700" font-size="22" opacity="0.9">${title}</text></svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
 // REAL GitHub Projects Dataset for Nguyễn Đức Chiến Công (@conghlovt)
@@ -30,15 +30,15 @@ const projectsData = [
     category: 'mobile',
     type: 'Đồ Án Môn Học',
     year: '2026',
-    role: 'UI/UX & Frontend Developer (Auth & Admin Dashboard)',
+    role: 'Trưởng Nhóm & UI/UX Frontend Developer (Auth & Admin Dashboard)',
     short: 'Phát triển luồng giao diện xác thực người dùng (Đăng ký, Đăng nhập, Đăng xuất) và xây dựng Bảng điều khiển Quản trị viên (Admin Dashboard).',
-    description: 'Đồ án môn học Phát triển ứng dụng đa nền tảng chính thức trên GitHub conghlovt. Đảm nhận vai trò chính thiết kế & lập trình toàn bộ luồng xác thực người dùng (Đăng ký, Đăng nhập, Đăng xuất), lưu trữ phiên làm việc an toàn và xây dựng Bảng điều khiển Quản trị viên (Admin Dashboard) hiển thị thống kê & quản lý dữ liệu.',
+    description: 'Đồ án môn học Phát triển ứng dụng đa nền tảng chính thức trên GitHub conghlovt. Đảm nhận vai trò Trưởng nhóm phát triển, chỉ đạo kế hoạch và trực tiếp thiết kế & lập trình toàn bộ luồng xác thực người dùng (Đăng ký, Đăng nhập, Đăng xuất), lưu trữ phiên làm việc an toàn và xây dựng Bảng điều khiển Quản trị viên (Admin Dashboard).',
     highlights: [
+      'Trưởng nhóm phát triển đồ án (Quản lý tiến độ & kiến trúc dự án)',
       'Repository chính thức trên GitHub: github.com/conghlovt/Do_An_Phat_Trien_Ung_Dung_Da_Nen_Tang',
       'Thiết kế & hoàn thiện giao diện Đăng ký, Đăng nhập, Đăng xuất mượt mà',
       'Phát triển Bảng điều khiển Quản trị viên (Admin Dashboard) trực quan & tối ưu UI',
-      'Tích hợp luồng xác thực token / session và phân quyền truy cập hệ thống',
-      'Lập trình bằng TypeScript & tối ưu trải nghiệm người dùng mượt mà'
+      'Tích hợp luồng xác thực token / session và phân quyền truy cập hệ thống'
     ],
     tags: ['TypeScript', 'Auth UI', 'Admin Dashboard', 'Mobile App', 'GitHub Repo'],
     github: 'https://github.com/conghlovt/Do_An_Phat_Trien_Ung_Dung_Da_Nen_Tang',
@@ -51,10 +51,11 @@ const projectsData = [
     category: 'ai',
     type: 'Đồ Án Chuyên Nành AI',
     year: '2026',
-    role: 'Computer Vision & AI Engineer',
+    role: 'Trưởng Nhóm & Computer Vision Engineer',
     short: 'Nghiên cứu và thực nghiệm các mô hình Thị Giác Máy Tính, phân tích ảnh số trên Jupyter Notebook & OpenCV Python.',
-    description: 'Đồ án nghiên cứu chuyên sâu về Thị Giác Máy Tính chính thức trên GitHub conghlovt. Thực nghiệm xử lý ảnh số, trích xuất đặc trưng vùng quan tâm ROI, phân loại ảnh và nhận diện đối tượng bằng Python.',
+    description: 'Đồ án nghiên cứu chuyên sâu về Thị Giác Máy Tính chính thức trên GitHub conghlovt. Đảm nhận vai trò Trưởng nhóm định hướng mô hình, thực nghiệm xử lý ảnh số, trích xuất đặc trưng vùng quan tâm ROI, phân loại ảnh và nhận diện đối tượng bằng Python.',
     highlights: [
+      'Trưởng nhóm nghiên cứu (Phân công nhiệm vụ & định hướng mô hình)',
       'Repository chính thức trên GitHub: github.com/conghlovt/Do_An_Thi_Giac_May_Tinh',
       'Thực nghiệm trực tiếp với Jupyter Notebook & OpenCV Python',
       'Khử nhiễu ảnh, trích xuất biên dạng contour và nhị phân hóa ảnh thích ứng',
@@ -66,24 +67,25 @@ const projectsData = [
     banner: generateBannerSvg('Đồ Án Thị Giác Máy Tính', '#1e1b4b', '#a855f7')
   },
   {
-    id: 'do-an-khai-pha-du-lieu-ml',
-    title: 'Phân Tích & Phân Cụm Dữ Liệu Khách Hàng (Machine Learning & Data Mining)',
+    id: 'do-an-xu-ly-anh-xla',
+    title: 'Đồ Án Xử Lý Ảnh (Digital Image Processing - XLA)',
     category: 'ai',
-    type: 'Đề Tài Khai Phá Dữ Liệu',
+    type: 'Đồ Án Môn Học',
     year: '2025',
-    role: 'Data Analyst & ML Developer',
-    short: 'Xử lý tiền dữ liệu lớn, làm sạch dữ liệu khuyết trùng lặp và phân nhóm dữ liệu bằng KMeans Clustering & PCA.',
-    description: 'Đồ án phân tích dữ liệu chuyên sâu. Thực hiện làm sạch dữ liệu, kiểm tra tính nhất quán, phân cụm khách hàng bằng thuật toán KMeans và giảm chiều dữ liệu PCA trực quan hóa biểu đồ phân bố.',
+    role: 'Trưởng Nhóm & Image Processing Engineer',
+    short: 'Nghiên cứu các thuật toán lọc ảnh, nâng cao chất lượng hình ảnh, biến đổi không gian màu, phát hiện biên cạnh và phân đoạn ảnh số.',
+    description: 'Đồ án môn học Xử lý ảnh (Digital Image Processing - XLA). Đảm nhận vai trò Trưởng nhóm chỉ đạo thực nghiệm lập trình các thuật toán xử lý ảnh số: khử nhiễu, cân bằng biểu đồ xám Histogram Equalization, lọc không gian, dò biên cạnh (Sobel, Canny), chuyển đổi không gian màu và phân đoạn đối tượng trong ảnh.',
     highlights: [
-      'Làm sạch & tiền xử lý các tập dữ liệu lớn số lượng bản ghi cao',
-      'Gom cụm phân nhóm dữ liệu chuẩn xác với thuật toán KMeans',
-      'Trực quan hóa đồ thị phân cẩm bằng Matplotlib & Seaborn',
-      'Đánh giá chỉ số phân nhóm dữ liệu Silhouette Score'
+      'Trưởng nhóm đồ án (Lập kế hoạch & kiểm soát chất lượng mã nguồn)',
+      'Thực nghiệm các thuật toán xử lý ảnh số trên Python & OpenCV',
+      'Khử nhiễu, tăng cường chất lượng ảnh & cân bằng biểu đồ xám Histogram',
+      'Phát hiện biên cạnh & phân đoạn vùng đặc trưng hình ảnh',
+      'Tối ưu hóa tốc độ xử lý các ma trận điểm ảnh (Pixel Matrix)'
     ],
-    tags: ['Python', 'Pandas', 'Scikit-Learn', 'KMeans', 'PCA', 'Data Mining'],
+    tags: ['Python', 'OpenCV', 'Xử Lý Ảnh', 'XLA', 'Digital Image Processing', 'NumPy'],
     github: 'https://github.com/conghlovt',
     demo: 'https://github.com/conghlovt',
-    banner: generateBannerSvg('Phân Tích & Gom Cụm Dữ Liệu', '#042f2e', '#14b8a6')
+    banner: generateBannerSvg('Đồ Án Xử Lý Ảnh (XLA)', '#042f2e', '#14b8a6')
   }
 ];
 
@@ -779,4 +781,8 @@ function initApp() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', initApp);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
