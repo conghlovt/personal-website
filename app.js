@@ -101,6 +101,7 @@ const profileInfo = {
   bio: 'Sinh viên Khoa CNTT - Trường Đại Học Xây Dựng Hà Nội (Lớp 68CS1). Đam mê làm việc với dữ liệu, Machine Learning, Computer Vision và phát triển ứng dụng Web/Mobile. Luôn cẩn thận, chú trọng độ chính xác dữ liệu và liên tục học hỏi công nghệ mới.',
   githubUser: 'conghlovt',
   githubUrl: 'https://github.com/conghlovt',
+  repoUrl: 'https://github.com/conghlovt/personal-website',
   avatarUrl: 'https://avatars.githubusercontent.com/u/180565649?v=4',
   email: 'conghlovt2k5@gmail.com',
   phone: '0378143932'
@@ -142,8 +143,9 @@ function renderHeader() {
     </header>
     <aside class="side-rail">
       <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer" title="GitHub Profile @conghlovt">${icons.github}</a>
-      <a href="mailto:${profileInfo.email}" title="Gửi Email">${icons.mail}</a>
-      <a href="tel:${profileInfo.phone}" title="Gọi Điện">${icons.phone}</a>
+      <a href="${profileInfo.repoUrl}" target="_blank" rel="noreferrer" title="Repository personal-website">${icons.code}</a>
+      <a href="mailto:${profileInfo.email}" title="Gửi Email (${profileInfo.email})">${icons.mail}</a>
+      <a href="tel:${profileInfo.phone}" title="Gọi Điện (${profileInfo.phone})">${icons.phone}</a>
     </aside>`;
 }
 
@@ -408,20 +410,34 @@ function renderContactAndDeploySection() {
               <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer">github.com/${profileInfo.githubUser}</a>
             </div>
           </div>
+          <div class="contact-item">
+            <div class="contact-icon">${icons.code}</div>
+            <div class="contact-text" style="flex-grow:1; overflow:hidden;">
+              <label>REPOSITORY WEBSITE CÁ NHÂN</label>
+              <a href="${profileInfo.repoUrl}" target="_blank" rel="noreferrer" style="word-break:break-all;">github.com/${profileInfo.githubUser}/personal-website</a>
+            </div>
+            <button class="copy-btn" data-copy="${profileInfo.repoUrl}">${icons.copy} Copy</button>
+          </div>
         </div>
 
         <div class="deploy-banner-card">
           <div>
             <h3>📄 Hồ Sơ Năng Lực & Mã Nguồn GitHub</h3>
-            <p>Trang Profile cá nhân của <strong>Nguyễn Đức Chiến Công</strong> được xây dựng hoàn chỉnh kết nối trực tiếp với tài khoản GitHub <strong>@${profileInfo.githubUser}</strong>.</p>
+            <p>Trang Profile cá nhân của <strong>Nguyễn Đức Chiến Công</strong> được xây dựng hoàn chỉnh kết nối trực tiếp với tài khoản GitHub <strong>@${profileInfo.githubUser}</strong> và Repository <strong>personal-website</strong>.</p>
             <div class="deploy-options-list">
               <span class="deploy-chip">📍 HUCE Lớp 68CS1</span>
               <span class="deploy-chip">🐙 GitHub @conghlovt</span>
+              <span class="deploy-chip">💻 personal-website Repo</span>
             </div>
           </div>
-          <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer" class="btn btn-primary">
-            ${icons.github} Truy Cập GitHub Profile @conghlovt
-          </a>
+          <div class="action-row" style="margin-top:16px;">
+            <a href="${profileInfo.repoUrl}" target="_blank" rel="noreferrer" class="btn btn-primary">
+              ${icons.github} Xem Repo Website ↗
+            </a>
+            <a href="${profileInfo.githubUrl}" target="_blank" rel="noreferrer" class="btn btn-accent">
+              GitHub Profile ↗
+            </a>
+          </div>
         </div>
       </div>
     </section>`;
