@@ -924,7 +924,7 @@ button, input, select {
 
 .github-repos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -937,6 +937,8 @@ button, input, select {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .github-repo-card:hover {
@@ -947,27 +949,50 @@ button, input, select {
 
 .repo-card-top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 10px;
+  gap: 10px;
+  margin-bottom: 12px;
+  min-width: 0;
 }
 
 .repo-name {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--cyan);
+  line-height: 1.4;
+  min-width: 0;
+  flex: 1;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.repo-name svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.repo-name span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .repo-visibility {
+  flex-shrink: 0;
   padding: 2px 8px;
   border-radius: var(--radius-full);
   border: 1px solid var(--line);
   font-size: 0.72rem;
   font-family: var(--mono);
   color: var(--text-dim);
+  margin-top: 1px;
 }
 
 .repo-desc {

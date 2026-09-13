@@ -503,7 +503,7 @@ async function fetchGitHubRepos(username) {
     container.innerHTML = repos.map(repo => `
       <div class="github-repo-card">
         <div class="repo-card-top">
-          <a href="${repo.html_url}" target="_blank" rel="noreferrer" class="repo-name">
+          <a href="${repo.html_url}" target="_blank" rel="noreferrer" class="repo-name" title="${repo.name}">
             ${icons.github} <span>${repo.name}</span>
           </a>
           <span class="repo-visibility">${repo.private ? 'Private' : 'Public'}</span>
