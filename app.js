@@ -74,17 +74,17 @@ const projectsData = [
     year: '2025',
     role: 'Trưởng Nhóm & Image Processing Engineer',
     short: 'Nghiên cứu các thuật toán lọc ảnh, nâng cao chất lượng hình ảnh, biến đổi không gian màu, phát hiện biên cạnh và phân đoạn ảnh số.',
-    description: 'Đồ án môn học Xử lý ảnh (Digital Image Processing - XLA). Đảm nhận vai trò Trưởng nhóm chỉ đạo thực nghiệm lập trình các thuật toán xử lý ảnh số: khử nhiễu, cân bằng biểu đồ xám Histogram Equalization, lọc không gian, dò biên cạnh (Sobel, Canny), chuyển đổi không gian màu và phân đoạn đối tượng trong ảnh.',
+    description: 'Đồ án môn học Xử lý ảnh (Digital Image Processing - XLA) chính thức trên GitHub conghlovt. Đảm nhận vai trò Trưởng nhóm chỉ đạo thực nghiệm lập trình các thuật toán xử lý ảnh số: khử nhiễu, cân bằng biểu đồ xám Histogram Equalization, lọc không gian, dò biên cạnh (Sobel, Canny), chuyển đổi không gian màu và phân đoạn đối tượng trong ảnh.',
     highlights: [
       'Trưởng nhóm đồ án (Lập kế hoạch & kiểm soát chất lượng mã nguồn)',
+      'Repository chính thức trên GitHub: github.com/conghlovt/Do_An_XLA',
       'Thực nghiệm các thuật toán xử lý ảnh số trên Python & OpenCV',
       'Khử nhiễu, tăng cường chất lượng ảnh & cân bằng biểu đồ xám Histogram',
-      'Phát hiện biên cạnh & phân đoạn vùng đặc trưng hình ảnh',
-      'Tối ưu hóa tốc độ xử lý các ma trận điểm ảnh (Pixel Matrix)'
+      'Phát hiện biên cạnh & phân đoạn vùng đặc trưng hình ảnh'
     ],
     tags: ['Python', 'OpenCV', 'Xử Lý Ảnh', 'XLA', 'Digital Image Processing', 'NumPy'],
-    github: 'https://github.com/conghlovt',
-    demo: 'https://github.com/conghlovt',
+    github: 'https://github.com/conghlovt/Do_An_XLA',
+    demo: 'https://github.com/conghlovt/Do_An_XLA',
     banner: generateBannerSvg('Đồ Án Xử Lý Ảnh (XLA)', '#042f2e', '#14b8a6')
   }
 ];
